@@ -29,7 +29,7 @@
 1. 右键单击 `Install.ps1` 并选择 `用 PowerShell运行（管理员）`
     - 如果您之前安装了 MagiskOnWSA，它会自动卸载之前的版本，同时 **会保留所有用户数据** 并安装新的，所以不用担心您的数据会丢失。
     - 如果您已经安装了正式的 WSA ，则应先将其卸载。 （如果你想保留你的数据，你可以在卸载前备份 `%LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx` 这个路径里的文件，安装后覆盖。）（如果你想恢复图标到开始菜单，请安装并使用 [WSAHelper](https://github.com/LSPosed/WSAHelper/releases/latest)。）
-    - 如果弹出窗口消失 **without asking administrative permission** 并且 WSA 没有成功安装，你应该以管理员身份手动运行 `Install.ps1` :
+    - 如果弹出窗口消失 **并且也没有和你要管理员权限** ，并且 WSA 没有成功安装，你应该以管理员身份手动运行 `Install.ps1` :
         1. 按 `Win+x` 并选择 `Windows终端（管理员）`
         2. 输入 `cd "{X:\path\to\your\extracted\folder}"` 并 `回车`, 记得替换 `{X:\path\to\your\extracted\folder}` 包含 `{}`的, 打个比方 `cd "D:\wsa"`
         3. 输入 `PowerShell.exe -ExecutionPolicy Bypass -File .\Install.ps1` 并按 `enter`
