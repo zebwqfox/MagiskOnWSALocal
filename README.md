@@ -1,85 +1,85 @@
-# Magisk on WSA (with Google Apps)
+# 子系统 上的 Magisk（包含谷歌全家桶）
 
-## Pre-request
+## 首先准备
 
-- Ubuntu (you can use WSL2)
+- Ubuntu（可以用 WSL2）
 
-## Features
+## 特点
 
-- Integrate Magisk and OpenGApps in a few clicks within minutes
-- Keep each build up to date
-- Support both ARM64 and x64
-- Support all OpenGApps variants except for aroma (aroma does not support x86_64, please use super instead)
-- Fix VPN dialog not showing (use our [VpnDialogs app](https://github.com/LSPosed/VpnDialogs))
-- Unattended installation
-- Automatically activates developers mode in Windows 11
-- Update to the new version while preserving data with a one-click script
-- Merged all language packs
-- Support managing start menu icons (manually installing [WSAHelper](https://github.com/LSPosed/WSAHelper/releases/latest) to use this feature)
+- 在几分钟内点击几下即可一键安装 Magisk 和 OpenGApps
+- 让每个编译代码保持最新状态
+- 支持 ARM64 和 x64架构
+- 支持除aroma之外的所有OpenGApps变体（aroma不支持x86_64，请使用super代替）
+- 修复 VPN 对话框不显示（使用我们的 [VpnDialogs 应用程序](https://github.com/LSPosed/VpnDialogs)）
+- 一键傻瓜式无人值守自动安装
+- 在 Windows 11 中自动激活开发者模式
+- 更新到新版本，同时通过一键脚本保存数据
+- 合并所有语言包
+- 支持管理开始菜单图标（手动安装 [WSAHelper](https://github.com/LSPosed/WSAHelper/releases/latest) 使用此功能）
 
-## Text Guide
+## 文字版指南
 
-1. Star (if you like)
-1. Clone the repo to local
-1. Run `scripts/run.sh`
-1. Select the version of Magisk and select the [OpenGApps variant](https://github.com/opengapps/opengapps/wiki#variants) you like, select the root solution (none means no root), select the WSA version and its architecture (mostly x64)
-1. Wait for the script to complete and the artifact will be in the `output` folder
+1. 点个星（如果你想的话）
+1. 将仓库源码克隆到本地
+1. 运行 `scripts/run.sh`
+1. 选择Magisk的版本，然后选择你喜欢的【OpenGApps变体】（https://github.com/opengapps/opengapps/wiki#variants），选择root解决方案（none表示没有root），选择WSA版本和它的架构（主要是 x64）
+1. 等待脚本完成，编译完成后的文件会在 `output` 文件夹存放。
 
-1. Move the artifact to a place you like
-1. Right-click `Install.ps1` and select `Run with PowerShell`
-    - If you previously have a MagiskOnWSA installation, it will automatically uninstall the previous one while **preserving all user data** and install the new one, so don't worry about your data.
-    - If you have an official WSA installation, you should uninstall it first. (In case you want to preserve your data, you can backup `%LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx` before uninstallation and restore it after installation.) (If you want to restore the icons to the start menu, please install and use [WSAHelper](https://github.com/LSPosed/WSAHelper/releases/latest).)
-    - If the popup windows disappear **without asking administrative permission** and WSA is not installed successfully, you should manually run `Install.ps1` as administrator:
-        1. Press `Win+x` and select `Windows Terminal (Admin)`
-        2. Input `cd "{X:\path\to\your\extracted\folder}"` and press `enter`, and remember to replace `{X:\path\to\your\extracted\folder}` including the `{}`, for example `cd "D:\wsa"`
-        3. Input `PowerShell.exe -ExecutionPolicy Bypass -File .\Install.ps1` and press `enter`
-        4. The script will run and WSA will be installed
-        5. If this workaround does not work, your PC is not supported for WSA
-1. Magisk/Play store will be launched. Enjoy by installing LSPosed-zygisk with zygisk enabled or Riru and LSPosed-riru
+1. 将一键脚本移动到你喜欢的地方
+1. 右键单击 `Install.ps1` 并选择 `用 PowerShell运行（管理员）`
+    - 如果您之前安装了 MagiskOnWSA，它会自动卸载之前的版本，同时 **会保留所有用户数据** 并安装新的，所以不用担心您的数据会丢失。
+    - 如果您已经安装了正式的 WSA ，则应先将其卸载。 （如果你想保留你的数据，你可以在卸载前备份 `%LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx` 这个路径里的文件，安装后覆盖。）（如果你想恢复图标到开始菜单，请安装并使用 [WSAHelper](https://github.com/LSPosed/WSAHelper/releases/latest)。）
+    - 如果弹出窗口消失 **without asking administrative permission** 并且 WSA 没有成功安装，你应该以管理员身份手动运行 `Install.ps1` :
+        1. 按 `Win+x` 并选择 `Windows终端（管理员）`
+        2. 输入 `cd "{X:\path\to\your\extracted\folder}"` 并 `回车`, 记得替换 `{X:\path\to\your\extracted\folder}` 包含 `{}`的, 打个比方 `cd "D:\wsa"`
+        3. 输入 `PowerShell.exe -ExecutionPolicy Bypass -File .\Install.ps1` 并按 `enter`
+        4. 脚本将运行并安装 WSA
+        5. 如果此解决方法不起作用，则您的 PC 不支持 WSA
+1. Magisk/Play store 将会自动启动. Enjoy by installing LSPosed-zygisk with zygisk enabled or Riru and LSPosed-riru
 
 ## FAQ
 
-- Can I delete the installed folder?
+- 我可以删除已安装的文件夹吗？
 
-    No.
-- How can I update WSA to a new version?
+    不行。
+    
+- 如何将 WSA 更新到新版本？
 
-    Delete the `download` folder
-    Rerun the script, replace the content of your previous installation and rerun `Install.ps1`. Don't worry, your data will be preserved.
-- How can I get the logcat from WSA?
+    删除“下载”文件夹
+    重新运行脚本，替换之前安装的内容并重新运行“Install.ps1”。不用担心，您的数据将被保留。
+    
+- 如何从 WSA 获取 logcat？
 
     `%LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalState\diagnostics\logcat`
-- How can I update Magisk to a new version?
+    
+- 如何将 Magisk 更新到新版本？
 
-    Do the same as updating WSA
-- How to pass safetynet?
+    执行与更新 WSA 相同的操作
+    
+- 未启用虚拟化？
 
-    Like all the other emulators, no way.
-- Virtualization is not enabled?
+    如果未启用，`Install.ps1` 会帮助您启用它。重新启动后，重新运行“Install.ps1”以安装 WSA。如果仍然无法正常工作，则必须在 BIOS 中启用虚拟化。这是一个很长的故事，所以向谷歌寻求帮助。
+    
+- 如何以读写方式重新安装系统？
 
-    `Install.ps1` helps you enable it if not enabled. After rebooting, rerun `Install.ps1` to install WSA. If it's still not working, you have to enable virtualization in BIOS. That's a long story so ask Google for help.
-- How to remount the system as read-write?
+    在 WSA 中没有办法，因为它是由 Hyper-V 以只读方式安装的。您可以通过制作 Magisk 模块来修改系统。或者直接修改system.img。向谷歌寻求帮助。
+    
+- 我不能`adb connect localhost:58526`
 
-    No way in WSA since it's mounted as read-only by Hyper-V. You can modify the system by making a Magisk module. Or directly modify the system.img. Ask Google for help.
-- I cannot `adb connect localhost:58526`
+    确保已启用开发者模式。如果问题仍然存在，请在设置页面检查 WSA 的 IP 地址并尝试 `adb connect ip:5555`。
+    
+- Magisk 在线模块列表为空？
 
-    Make sure developer mode is enabled. If the issue persists, check the IP address of WSA on the setting page and try `adb connect ip:5555`.
-- Magisk online module list is empty?
+    Magisk 主动删除在线模块存储库。您可以在本地安装模块，也可以通过 `adb push module.zip /data/local/tmp` 和 `adb shell su -c magisk --install-module /data/local/tmp/module.zip` 安装模块。
+    
+- 我可以使用 Magisk 23.0 稳定版或更低版本吗？
 
-    Magisk actively removes the online module repository. You can install the module locally or by `adb push module.zip /data/local/tmp` and `adb shell su -c magisk --install-module /data/local/tmp/module.zip`.
-- Can I use Magisk 23.0 stable or a lower version?
+    不，Magisk 存在阻止自身在 WSA 上运行的错误。 Magisk 24+ 已修复它们。所以你必须使用 Magisk 24 或更高版本。
+    
+- 我怎样才能摆脱 Magisk？
 
-    No. Magisk has bugs preventing itself from running on WSA. Magisk 24+ has fixed them. So you must use Magisk 24 or higher version.
-- How can I get rid of Magisk?
-
-    Choose `none` as the root solution.
-- Github script is updated, how can I synchronize it?
-
-    1. In your fork repository, click `fetch upstream`
-        ![fetch](https://docs.github.com/assets/cb-33284/images/help/repository/fetch-upstream-drop-down.png)
-    1. Then click `fetch and merge`
-        ![merge](https://docs.github.com/assets/cb-128489/images/help/repository/fetch-and-merge-button.png)
-
+    选择“无”作为root解决方案。
+    
 ## Credits
 
 - [StoreLib](https://github.com/StoreDev/StoreLib): API for downloading WSA
